@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using KaPro.Views;
 
 namespace KaPro.Views
 {
@@ -18,6 +19,7 @@ namespace KaPro.Views
         public TokenPage()
         {
             InitializeComponent();
+            ContentPanel.DataContext =App.UserModel;
         }
     }
 }

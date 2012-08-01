@@ -10,12 +10,10 @@ namespace KaPro.Views
 {
     public partial class PageSignin : PhoneApplicationPage
     {
-        public String accessToken = null;
-        public String accessTokenSecret = null;
+       
         public PageSignin()
         {
             InitializeComponent();
-            // StartLogin();
         }
 
         private void StartLogin()
@@ -69,8 +67,8 @@ namespace KaPro.Views
             var request = new RestRequest(Constants.OauthAccessToken);
             client.ExecuteAsync(request, response =>
             {
-                accessToken = GetQueryParameter(response.Content, "oauth_token");
-                accessTokenSecret = GetQueryParameter(response.Content, "oauth_token_secret");
+                App.UserModel.AccessToken = GetQueryParameter(response.Content, "oauth_token");
+                App.UserModel.TokenSecret = GetQueryParameter(response.Content, "oauth_token_secret");
             });
         }
 

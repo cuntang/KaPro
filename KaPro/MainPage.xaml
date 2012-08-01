@@ -57,6 +57,7 @@
             <shell:ApplicationBarIconButton IconUri="/Asset/login.png" Text="Login" Click="Login_Click"/>
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="Log in" Click="Login_Click"/>
+                <shell:ApplicationBarMenuItem Text="Token details" Click="Token_Click"/>
                 <shell:ApplicationBarMenuItem Text="Log out"/>
                 <shell:ApplicationBarMenuItem Text="Rate me"/>
                 <shell:ApplicationBarMenuItem Text="Setting"/>

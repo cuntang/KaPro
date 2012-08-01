@@ -18,7 +18,22 @@ namespace KaPro
     public partial class App : Application
     {
         private static MainViewModel viewModel = null;
+        private static UserViewModel userModel = null;
 
+        public static UserViewModel UserModel
+        {
+            get
+            {
+                if (userModel == null)
+                {
+                    userModel = new UserViewModel();
+                    userModel.AccessToken = "N/A";
+                    userModel.TokenSecret = "N/A";
+                    userModel.UserName = "Anynomous";
+                }
+                return userModel;
+            }
+        }
         /// <summary>
         /// A static ViewModel used by the views to bind against.
         /// </summary>

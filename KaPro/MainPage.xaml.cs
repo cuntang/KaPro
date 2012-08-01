@@ -51,5 +51,10 @@ namespace KaPro
             this.NavigationService.Navigate(new Uri("/Views/PageSignin.xaml", UriKind.Relative));
         }
 
+        private void Token_Click(object sender, EventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("/Views/TokenPage.xaml", UriKind.Relative));
+        }
+
     }
 }

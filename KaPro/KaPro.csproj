@@ -74,8 +74,12 @@
     <Compile Include="Utilities\OAuthBase.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Views\PageSignin.xaml.cs">
       <DependentUpon>PageSignin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TokenPage.xaml.cs">
+      <DependentUpon>TokenPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +96,10 @@
       <SubType>Designer</SubType>
     </DesignData>
     <Page Include="Views\PageSignin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TokenPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

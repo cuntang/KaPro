@@ -11,7 +11,8 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+    xmlns:src="clr-namespace:KaPro.Views">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -22,20 +23,19 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="Token Details" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" DataContext="">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="177" />
+                <ColumnDefinition Width="150" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Height="50" HorizontalAlignment="Left" Margin="32,47,0,0" Name="AccessToken1" Text="AccessToken:" VerticalAlignment="Top" Width="127" />
             <TextBlock Height="50" HorizontalAlignment="Left" Margin="32,105,0,0" Name="TokenSecret1" Text="TokenSecret:" VerticalAlignment="Top" Width="127" />
-            <TextBlock Grid.Column="1" Height="50" HorizontalAlignment="Left" Margin="32,47,0,0" Name="AccessToken" Text="null" VerticalAlignment="Top" Width="127" />
-            <TextBlock Height="50" HorizontalAlignment="Left" Margin="32,105,0,0" Name="TokenSecret" Text="null" VerticalAlignment="Top" Width="127" Grid.Column="1" />
+            <TextBlock Grid.Column="1" Height="50" HorizontalAlignment="Left" Margin="32,47,0,0" Name="AccessToken" Text="{Binding AccessToken, Mode=TwoWay}" VerticalAlignment="Top" />
+            <TextBlock Height="50" HorizontalAlignment="Left" Margin="32,105,0,0" Name="TokenSecret" Text="{Binding TokenSecret, Mode=TwoWay}" VerticalAlignment="Top" Width="127" Grid.Column="1" />
         </Grid>
     </Grid>
  
