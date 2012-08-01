@@ -13,10 +13,12 @@ namespace KaPro.Utilities
 {
     public class Constants
     {
+        public static readonly String OauthConsumerKey = "f5eDsZSRbRuRHEJC";
+        public static readonly String OauthConsumerSecret = "q6GBseWLyMPUY4wp";
         public static readonly String BaseUrl = "http://www.khanacademy.org/";
         public static readonly String OauthRequestToken = "api/auth/request_token";
         public static readonly String OauthAccessToken = "api/auth/access_token";
-        public static readonly String OauthConsumerKey = "f5eDsZSRbRuRHEJC";
-        public static readonly String OauthConsumerSecret = "q6GBseWLyMPUY4wp";
+        public static readonly String UserDetails = "api/v1/user";
+
     }
 }

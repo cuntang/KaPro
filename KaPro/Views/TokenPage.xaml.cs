@@ -21,5 +21,11 @@ namespace KaPro.Views
             InitializeComponent();
             ContentPanel.DataContext =App.UserModel;
         }
+
+        private void Logout_Click(object sender, EventArgs e)
+        {
+            App.UserModel.AccessToken = "N/A";
+            App.UserModel.TokenSecret = "N/A";
+        }
     }
 }

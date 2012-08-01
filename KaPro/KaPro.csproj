@@ -25,6 +25,8 @@
     <SilverlightAppEntry>KaPro.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.30816.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,6 +63,9 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
+    <Reference Include="ToggleSwitch, Version=1.1.0.0, Culture=neutral, PublicKeyToken=8637099990568f75">
+      <HintPath>..\..\..\Users\cuntang\Downloads\work\silverlight\Silverlight\ToggleSwitch\ToggleSwitch.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -113,6 +118,7 @@
     <Content Include="Asset\login.png" />
     <Resource Include="Asset\logo.png" />
     <Resource Include="Asset\logo_mini.png" />
+    <Content Include="Asset\logout.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup />
