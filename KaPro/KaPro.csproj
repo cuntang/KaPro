@@ -68,7 +68,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
     <Reference Include="ToggleSwitch, Version=1.1.0.0, Culture=neutral, PublicKeyToken=8637099990568f75">
-      <HintPath>..\..\..\Users\cuntang\Downloads\work\silverlight\Silverlight\ToggleSwitch\ToggleSwitch.dll</HintPath>
+      <HintPath>..\..\..\..\Users\WKS_admin\Downloads\work\Toggle Switch Demo 1.1.1\Silverlight\ToggleSwitch.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -116,20 +116,20 @@ namespace KaPro
             var tapped = (sender as Grid).DataContext as VideoModel;
 
             MediaPlayerLauncher objMediaPlayerLauncher = new MediaPlayerLauncher();
-            if (tapped.Download_urls!=null)
+            if (tapped.Download_urls != null)
+            {
                 objMediaPlayerLauncher.Media = new Uri(tapped.Download_urls["mp4"], UriKind.Absolute);
-            else
                 objMediaPlayerLauncher.Media = new Uri(tapped.Url, UriKind.Absolute);
-
-            objMediaPlayerLauncher.Location = MediaLocationType.Data;
-
-        objMediaPlayerLauncher.Controls = MediaPlaybackControls.Pause | MediaPlaybackControls.Stop | MediaPlaybackControls.All;
-
-        objMediaPlayerLauncher.Orientation = MediaPlayerOrientation.Landscape;
-
-        objMediaPlayerLauncher.Show();
-
+                objMediaPlayerLauncher.Location = MediaLocationType.Data;
+                objMediaPlayerLauncher.Controls = MediaPlaybackControls.Pause | MediaPlaybackControls.Stop | MediaPlaybackControls.All;
+                objMediaPlayerLauncher.Orientation = MediaPlayerOrientation.Landscape;
+                objMediaPlayerLauncher.Show();
+            }
+            else {
+                WebBrowserTask wb = new WebBrowserTask();
+                wb.Uri = new Uri(tapped.Url);
+                wb.Show();
+            }
         } 
-
     }
 }
