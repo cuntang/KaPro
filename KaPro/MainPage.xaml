@@ -6,28 +6,45 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:KaPro.Utilities"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696" 
     d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+    Style="{StaticResource PageStyle}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <controls:Pivot Title="Khan Academy Pro">
+        <controls:Pivot x:Name="MainPivot">
+            <controls:Pivot.Title>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Style="{StaticResource PhoneTextNormalStyle}">Khan Academy Pro</TextBlock>
+                <TextBlock Name="PageTitle" Grid.Column="1"  Style="{StaticResource PhoneTextAccentStyle}" Text="{Binding Topic, Mode=TwoWay}">- Main</TextBlock>
+                </Grid>
+            </controls:Pivot.Title>
             <!--Pivot item one-->
-            <controls:PivotItem Header="Topics">
+            <controls:PivotItem Header="Topics" Name="Topics">
                 <!--Double line list with text wrapping-->
-                <ListBox x:Name="FirstListBox" Margin="0,0,-12,0" ItemsSource="{Binding Items}">
+                <ListBox x:Name="FirstListBox" Margin="0,0,-12,0" ItemsSource="{Binding Items}"
+                          local:TiltEffect.IsTiltEnabled="True">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                          <StackPanel Margin="0,0,0,17" Width="432" Height="78">
-                              <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                              <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                          <StackPanel Margin="0,0,0,5" Width="432" Height="78">
+                                <toolkit:GestureService.GestureListener>
+                                    <toolkit:GestureListener Tap="ListBox_Tapped">
+                                    </toolkit:GestureListener>
+                                </toolkit:GestureService.GestureListener>
+                                <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextLargeStyle}" FontSize="40" />
                           </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -35,20 +52,35 @@
             </controls:PivotItem>
  
             <!--Pivot item two-->
-            <controls:PivotItem Header="Videos"> 
+            <controls:PivotItem Header="Videos" Name="Videos"> 
                 <!--Triple line list no text wrapping-->
-                    <ListBox x:Name="SecondListBox" Margin="0,0,-12,0" ItemsSource="{Binding Items}">
+                    <ListBox x:Name="SecondListBox" Margin="0,0,-12,0" ItemsSource="{Binding VideoItems}"
+                             local:TiltEffect.IsTiltEnabled="True">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="0,0,0,17">
-                                    <TextBlock Text="{Binding LineOne}" TextWrapping="NoWrap" Margin="12,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                    <TextBlock Text="{Binding LineThree}" TextWrapping="NoWrap" Margin="12,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                </StackPanel>
+                                <Grid Margin="0,0,0,10">
+                                <toolkit:GestureService.GestureListener>
+                                    <toolkit:GestureListener Tap="VideoListBox_Tapped">
+                                    </toolkit:GestureListener>
+                                </toolkit:GestureService.GestureListener>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="120"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Thumbnail}" Grid.RowSpan="2" Grid.Column="0" VerticalAlignment="Top"></Image>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Title}" TextWrapping="NoWrap" Margin="12,0,0,0" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Description}" TextWrapping="Wrap"  Margin="12,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
             </controls:PivotItem>
         </controls:Pivot>
+        <ProgressBar x:Name="progressMain" HorizontalAlignment="Left" Height="10" Margin="15,140,0,0" VerticalAlignment="Top" Width="450"/>
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->

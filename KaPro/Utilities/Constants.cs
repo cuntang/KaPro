@@ -19,6 +19,6 @@ namespace KaPro.Utilities
         public static readonly String OauthRequestToken = "api/auth/request_token";
         public static readonly String OauthAccessToken = "api/auth/access_token";
         public static readonly String UserDetails = "api/v1/user";
-
+        public static readonly String TopicUrl = "api/v1/topic/";
     }
 }

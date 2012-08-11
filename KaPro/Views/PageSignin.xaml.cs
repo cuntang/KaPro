@@ -40,7 +40,9 @@ namespace KaPro.Views
                 html = html.Insert(html.IndexOf("<head>", 0) + 6, hackstring);
                 html=html.Replace("href=\"/api",String.Format("href=\"{0}api",Constants.BaseUrl));
                 html = html.Replace("src=\"/images", String.Format("src=\"{0}images", Constants.BaseUrl));
+                LoginPage.Visibility = Visibility.Visible;
                 LoginPage.NavigateToString(html);
+                SigninProgress.Visibility = Visibility.Collapsed;
             });
         }
 
@@ -74,6 +76,9 @@ namespace KaPro.Views
 
         private void Login_Loaded(object sender, RoutedEventArgs e)
         {
+            SigninProgress.IsIndeterminate = true;
+            SigninProgress.Visibility = Visibility.Visible;
+            LoginPage.Visibility = Visibility.Collapsed;
             StartLogin();
         }
 
@@ -86,7 +91,7 @@ namespace KaPro.Views
                 if (arguments.Length < 1)
                     return;
                 GetAccessToken(arguments[1]);
-                this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                this.NavigationService.GoBack();
             }
         }
     }

@@ -19,7 +19,7 @@ namespace KaPro
     {
         private static MainViewModel viewModel = null;
         private static UserViewModel userModel = null;
-
+        public static Stack<TopicListModel> topicList = new Stack<TopicListModel>();
         public static UserViewModel UserModel
         {
             get
@@ -29,7 +29,9 @@ namespace KaPro
                     userModel = new UserViewModel();
                     userModel.AccessToken = "N/A";
                     userModel.TokenSecret = "N/A";
-                    userModel.UserName = "Anynomous";
+                    userModel.UserName = "";
+                    userModel.Email = "";
+                    userModel.Other = "";
                 }
                 return userModel;
             }
@@ -154,7 +156,7 @@ namespace KaPro
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            RootFrame = new PhoneApplicationFrame();
+            RootFrame = new TransitionFrame();
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures

@@ -12,99 +12,104 @@ using System.ComponentModel;
 
 namespace KaPro
 {
-    public class UserViewModel : INotifyPropertyChanged
+    public class TopicModel : INotifyPropertyChanged
     {
-        private string _accessToken;
+        private string _id;
         /// <summary>
         /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
         /// </summary>
         /// <returns></returns>
-        public string AccessToken
+        public string Id
         {
             get
             {
-                return _accessToken;
+                return _id;
             }
             set
             {
-                if (value != _accessToken)
+                if (value != _id)
                 {
-                    _accessToken = value;
-                    NotifyPropertyChanged("AccessToken");
+                    _id = value;
+                    NotifyPropertyChanged("id");
                 }
             }
         }
 
-        private string _tokenSecret;
+        private string _title;
         /// <summary>
         /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
         /// </summary>
         /// <returns></returns>
-        public string TokenSecret
+        public string Title
         {
             get
             {
-                return _tokenSecret;
+                return _title;
             }
             set
             {
-                if (value != _tokenSecret)
+                if (value != _title)
                 {
-                    _tokenSecret = value;
-                    NotifyPropertyChanged("TokenSecret");
+                    _title = value;
+                    NotifyPropertyChanged("Title");
                 }
             }
         }
 
-        private string _userName;
+        private string _url;
         /// <summary>
         /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
         /// </summary>
         /// <returns></returns>
-        public string UserName
+        public string Url
         {
             get
             {
-                return _userName;
+                return _url;
             }
             set
             {
-                if (value != _userName)
+                if (value != _url)
                 {
-                    _userName = value;
-                    NotifyPropertyChanged("UserName");
+                    _url = value;
+                    NotifyPropertyChanged("Url");
                 }
             }
         }
-        private string email;
-        public string Email
+        private bool _hide;
+        /// <summary>
+        /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
+        /// </summary>
+        /// <returns></returns>
+        public bool Hide
         {
             get
             {
-                return email;
+                return _hide;
             }
             set
             {
-                if (value != email)
+                if (value != _hide)
                 {
-                    email = value;
-                    NotifyPropertyChanged("Email");
+                    _hide = value;
+                    NotifyPropertyChanged("Hide");
                 }
             }
         }
-        private string other;
-        public string Other
+
+        private string _kind;
+        public string Kind
         {
             get
             {
-                return other;
+                return _kind;
             }
             set
             {
-                if (value != other)
+                if (value != _kind)
                 {
-                    other = value;
-                    NotifyPropertyChanged("Other");
+                    _kind = value;
+                    NotifyPropertyChanged("Kind");
                 }
             }
         }
@@ -117,15 +122,6 @@ namespace KaPro
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
-        }
-
-        public void clearUser()
-        {
-            AccessToken = "N/A";
-            TokenSecret = "N/A";
-            UserName = "";
-            Email = "";
-            Other = "";
         }
     }
 }

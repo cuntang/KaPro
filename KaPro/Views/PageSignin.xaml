@@ -12,23 +12,33 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True"
-    x:Name="login">
+    x:Name="login"
+    Style="{StaticResource PageStyle}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="PageTitle" Text="Sign In" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+                        <TextBlock x:Name="PageTitle" Text="Sign In" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}">
+            	<TextBlock.Foreground>
+            		<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            			<GradientStop Color="Black" Offset="0"/>
+            			<GradientStop Color="#FF00AFFF" Offset="1"/>
+            		</LinearGradientBrush>
+            	</TextBlock.Foreground>
+            </TextBlock>
         </StackPanel>
-
+    <ProgressBar Grid.Row="1" x:Name="SigninProgress" 
+                 Style="{StaticResource CustomIndeterminateProgressBar}"/>
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <phone:WebBrowser  Margin="7,7,0,0"
+        <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
+            <phone:WebBrowser  Margin="7,7,0,0" Visibility="Collapsed"
                 Name="LoginPage" VerticalAlignment="Top" Height="768"
                IsScriptEnabled="True"
                  Loaded="Login_Loaded"
