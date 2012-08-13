@@ -121,6 +121,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="KaPro_2012_08_11_12_50_43.sap" />
+    <None Include="KaPro_2012_08_11_13_12_07.sap" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />

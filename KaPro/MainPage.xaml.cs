@@ -119,7 +119,6 @@ namespace KaPro
             if (tapped.Download_urls != null)
             {
                 objMediaPlayerLauncher.Media = new Uri(tapped.Download_urls["mp4"], UriKind.Absolute);
-                objMediaPlayerLauncher.Media = new Uri(tapped.Url, UriKind.Absolute);
                 objMediaPlayerLauncher.Location = MediaLocationType.Data;
                 objMediaPlayerLauncher.Controls = MediaPlaybackControls.Pause | MediaPlaybackControls.Stop | MediaPlaybackControls.All;
                 objMediaPlayerLauncher.Orientation = MediaPlayerOrientation.Landscape;
@@ -130,6 +129,11 @@ namespace KaPro
                 wb.Uri = new Uri(tapped.Url);
                 wb.Show();
             }
+        }
+
+        private void ListBox_Hold(object sender, Microsoft.Phone.Controls.GestureEventArgs e)
+        {
+            var tapped = (sender as Grid).DataContext as TopicModel;
         } 
     }
 }

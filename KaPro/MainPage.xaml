@@ -41,7 +41,7 @@
                         <DataTemplate>
                           <StackPanel Margin="0,0,0,5" Width="432" Height="78">
                                 <toolkit:GestureService.GestureListener>
-                                    <toolkit:GestureListener Tap="ListBox_Tapped">
+                                    <toolkit:GestureListener Tap="ListBox_Tapped" Hold="ListBox_Hold">
                                     </toolkit:GestureListener>
                                 </toolkit:GestureService.GestureListener>
                                 <TextBlock Text="{Binding Title}" Style="{StaticResource PhoneTextLargeStyle}" FontSize="40" />
@@ -71,7 +71,7 @@
                                     <ColumnDefinition Width="200"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="{Binding Thumbnail}" Grid.RowSpan="2" Grid.Column="0" VerticalAlignment="Top"></Image>
+                                <Image Source="/Asset/youtbe.png" Width="50"  Height="50" Grid.RowSpan="2" Grid.Column="0" VerticalAlignment="Top"></Image>
                                     <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Title}" TextWrapping="NoWrap" Margin="12,0,0,0" Style="{StaticResource PhoneTextNormalStyle}"/>
                                 <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Description}" TextWrapping="Wrap"  Margin="12,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                                 </Grid>
