@@ -86,6 +86,7 @@ namespace KaPro
             var tapped = (sender as StackPanel).DataContext as TopicModel;
             if (tapped.Kind=="Topic")
             {
+                e.Handled = true;
                 this.NavigationService.Navigate(new Uri("/MainPage.xaml?topic=" + tapped.Id+"&title="+tapped.Title, UriKind.Relative));
             }
             
