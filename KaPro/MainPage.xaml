@@ -9,31 +9,43 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:KaPro.Utilities"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800" 
     d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.IsVisible="False"
     Style="{StaticResource PageStyle}">
-
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <!--Pivot Control-->
-        <controls:Pivot x:Name="MainPivot">
-            <controls:Pivot.Title>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Style="{StaticResource PhoneTextNormalStyle}">Khan Academy Pro</TextBlock>
-                <TextBlock Name="PageTitle" Grid.Column="1"  Style="{StaticResource PhoneTextAccentStyle}" Text="{Binding Topic, Mode=TwoWay}">- Main</TextBlock>
-                </Grid>
-            </controls:Pivot.Title>
-            <!--Pivot item one-->
-            <controls:PivotItem Header="Topics" Name="Topics">
+        <!--Pararoma Control-->
+        <controls:Panorama x:Name="MainPanorama" Margin="0" Height="Auto" Title="Khan Academy Pro">
+            <controls:Panorama.Background>
+                <ImageBrush ImageSource="/Asset/KanAcademy_panorama.png" Opacity="0.4"/>
+            </controls:Panorama.Background>
+            <!--Panorama item one-->
+            <controls:PanoramaItem Header="Topics" Name="Topics" Margin="0,-30,0,0" RenderTransformOrigin="1,1">
                 <!--Double line list with text wrapping-->
                 <ListBox x:Name="FirstListBox" Margin="0,0,-12,0" ItemsSource="{Binding Items}"
                           local:TiltEffect.IsTiltEnabled="True">
@@ -49,14 +61,13 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-            </controls:PivotItem>
- 
-            <!--Pivot item two-->
-            <controls:PivotItem Header="Videos" Name="Videos"> 
-                <!--Triple line list no text wrapping-->
-                    <ListBox x:Name="SecondListBox" Margin="0,0,-12,0" ItemsSource="{Binding VideoItems}"
-                             local:TiltEffect.IsTiltEnabled="True">
-                        <ListBox.ItemTemplate>
+            </controls:PanoramaItem>
+            <controls:PanoramaItem x:Name="Favorites" Header="Favorites" CacheMode="BitmapCache" Margin="0,-30,0,0">
+            	<!--Triple line list no text wrapping-->
+            	<ListBox x:Name="SecondListBox" Margin="0,0,-12,0"
+            		local:TiltEffect.IsTiltEnabled="True" Height="498">
+            		<ListBoxItem/>
+            		<!--ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="0,0,0,10">
                                 <toolkit:GestureService.GestureListener>
@@ -76,15 +87,26 @@
                                 <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Description}" TextWrapping="Wrap"  Margin="12,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                                 </Grid>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-            </controls:PivotItem>
-        </controls:Pivot>
+                        </ListBox.ItemTemplate-->
+            	</ListBox>
+            </controls:PanoramaItem>
+            <controls:PanoramaItem x:Name="History" Header="History" Margin="0,-30,0,0">
+            	<Grid/>
+            </controls:PanoramaItem>
+ 
+            <!--Panorama item two-->
+            <controls:PanoramaItem Header="My Profile" x:Name="Profile" Margin="0,-30,0,0">
+            	<toolkit:ContextMenuService.ContextMenu>
+            		<toolkit:ContextMenu/>
+            	</toolkit:ContextMenuService.ContextMenu> 
+                <!--Triple line list no text wrapping-->
+            </controls:PanoramaItem>
+        </controls:Panorama>
         <ProgressBar x:Name="progressMain" HorizontalAlignment="Left" Height="10" Margin="15,140,0,0" VerticalAlignment="Top" Width="450"/>
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->
-    <phone:PhoneApplicationPage.ApplicationBar>
+    <!--phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton IconUri="/Asset/login.png" Text="Login" Click="Login_Click"/>
             <shell:ApplicationBar.MenuItems>
@@ -96,6 +118,6 @@
                 <shell:ApplicationBarMenuItem Text="About"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar-->
 
 </phone:PhoneApplicationPage>

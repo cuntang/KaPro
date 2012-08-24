@@ -17,7 +17,6 @@ namespace KaPro
 {
     public partial class App : Application
     {
-        private static MainViewModel viewModel = null;
         private static UserViewModel userModel = null;
         public static Stack<TopicListModel> topicList = new Stack<TopicListModel>();
         public static UserViewModel UserModel
@@ -34,21 +33,6 @@ namespace KaPro
                     userModel.Other = "";
                 }
                 return userModel;
-            }
-        }
-        /// <summary>
-        /// A static ViewModel used by the views to bind against.
-        /// </summary>
-        /// <returns>The MainViewModel object.</returns>
-        public static MainViewModel ViewModel
-        {
-            get
-            {
-                // Delay creation of the view model until necessary
-                if (viewModel == null)
-                    viewModel = new MainViewModel();
-
-                return viewModel;
             }
         }
 
@@ -104,10 +88,10 @@ namespace KaPro
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
             // Ensure that application state is restored appropriately
-            if (!App.ViewModel.IsDataLoaded)
-            {
-                App.ViewModel.LoadData();
-            }
+            //if (!App.topicList.isDataLoaded)
+            //{
+            //    App.ViewModel.LoadData();
+            //}
         }
 
         // Code to execute when the application is deactivated (sent to background)

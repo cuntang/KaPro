@@ -47,13 +47,13 @@ namespace KaPro
             {
                 if (FirstListBox.Items.Count == 1)
                 {
-                    foreach (PivotItem i in MainPivot.Items.Cast<PivotItem>())
+                    foreach (PanoramaItem i in MainPanorama.Items.Cast<PanoramaItem>())
                     {
                         string ab = i.Name;
                     }
-                    PivotItem pivotItemToShow = MainPivot.Items.Cast<PivotItem>().Single(i => i.Name == "Videos");
+                    PanoramaItem PanoramaItemToShow = MainPanorama.Items.Cast<PanoramaItem>().Single(i => i.Name == "Videos");
 
-                    MainPivot.SelectedItem = pivotItemToShow;
+                    //MainPanorama.SelectedItem = PanoramaItemToShow;
                 }
             }
             if (a == "isVideoLoaded" || a == "isDataLoaded")
@@ -65,7 +65,7 @@ namespace KaPro
         {
             if (!topics.isDataLoaded)
             {
-                this.topics.LoadData(topic);
+                this.topics.LoadData("root");
             }
     
         }
@@ -83,18 +83,18 @@ namespace KaPro
 
         private void ListBox_Tapped(object sender, Microsoft.Phone.Controls.GestureEventArgs e)
         {
-            var tapped = (sender as StackPanel).DataContext as TopicModel;
+            var tapped = (sender as StackPanel).DataContext as EntryModel;
             if (tapped.Kind=="Topic")
             {
                 e.Handled = true;
-                this.NavigationService.Navigate(new Uri("/MainPage.xaml?topic=" + tapped.Id+"&title="+tapped.Title, UriKind.Relative));
+                this.NavigationService.Navigate(new Uri("/Views/TopicPivot.xaml?topic=" + tapped.Id+"&title="+tapped.Title, UriKind.Relative));
             }
             
             else if (tapped.Kind == "Video")
             {//direct play video
             }
         }
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+       /* protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             App.topicList.Push(topics);
             base.OnNavigatedFrom(e);
@@ -110,7 +110,7 @@ namespace KaPro
             if (e.NavigationMode == NavigationMode.Back)
                 topics = App.topicList.Pop();
             base.OnNavigatedTo(e);
-        }
+        }*/
 
         private void VideoListBox_Tapped(object sender, Microsoft.Phone.Controls.GestureEventArgs e)
         {
@@ -134,7 +134,7 @@ namespace KaPro
 
         private void ListBox_Hold(object sender, Microsoft.Phone.Controls.GestureEventArgs e)
         {
-            var tapped = (sender as Grid).DataContext as TopicModel;
+            var tapped = (sender as Grid).DataContext as EntryModel;
         } 
     }
 }

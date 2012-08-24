@@ -50,6 +50,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp">
+      <HintPath>..\..\..\Program Files (x86)\Microsoft SDKs\Silverlight\v4.0\Libraries\Client\Microsoft.CSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
@@ -67,8 +70,8 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
-    <Reference Include="ToggleSwitch, Version=1.1.0.0, Culture=neutral, PublicKeyToken=8637099990568f75">
-      <HintPath>..\..\..\..\Users\WKS_admin\Downloads\work\Toggle Switch Demo 1.1.1\Silverlight\ToggleSwitch.dll</HintPath>
+    <Reference Include="ToggleSwitch">
+      <HintPath>..\..\..\Users\cuntang\Downloads\work\silverlight\Silverlight\ToggleSwitch\ToggleSwitch.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -84,11 +87,8 @@
     <Compile Include="Utilities\OAuthBase.cs" />
     <Compile Include="Utilities\RelativeAnimatingControl.cs" />
     <Compile Include="Utilities\TiltEffect.cs" />
-    <Compile Include="ViewModels\ExerciseModel.cs" />
-    <Compile Include="ViewModels\ItemViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\TopicListModel.cs" />
-    <Compile Include="ViewModels\TopicModel.cs" />
+    <Compile Include="ViewModels\EntryModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\VideoModel.cs" />
     <Compile Include="Views\PageSignin.xaml.cs">
@@ -96,6 +96,9 @@
     </Compile>
     <Compile Include="Views\TokenPage.xaml.cs">
       <DependentUpon>TokenPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TopicPivot.xaml.cs">
+      <DependentUpon>TopicPivot.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\TopicPivot.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="KaPro_2012_08_11_12_50_43.sap" />
@@ -128,6 +135,8 @@
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Asset\KanAcademy_panorama.png" />
+    <Content Include="Asset\ka_pivot_dark.png" />
     <Content Include="Asset\login.png" />
     <Resource Include="Asset\logo.png" />
     <Resource Include="Asset\logo_mini.png" />
@@ -135,7 +144,9 @@
     <Content Include="Asset\youtbe.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

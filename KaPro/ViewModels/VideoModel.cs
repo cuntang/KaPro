@@ -119,6 +119,7 @@ namespace KaPro
         {
             get { return _download_urls;}
             set{
+
                 _download_urls = value;
                 Thumbnail=String.Format("http://proxy.boxresizer.com/convert?resize=200x200&source={0}",HttpUtility.UrlEncode(_download_urls["png"]));
         } }

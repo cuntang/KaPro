@@ -18,11 +18,19 @@ namespace KaPro
 {
     public class KaApi
     {
-
-        public void Execute<T>(RestRequest request, Action<T> callback, bool oauth=false, IDictionary param=null ) where T : new()
+        private RestClient client;
+        public KaApi()
         {
-            var client = new RestClient();
+            client = new RestClient();
+            //enable response compression with valid user-agent
+            client.AddDefaultHeader("Accept-Encoding", "gzip");
+            client.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:14.0) Gecko/20100101 Firefox/14.0.1";
             client.BaseUrl = Constants.BaseUrl;
+        }
+
+        public void ExecuteAsync<T>(RestRequest request, Action<T> callback, bool oauth=false, IDictionary param=null ) where T : new()
+        {
+
             if (oauth)
                 client.Authenticator = OAuth1Authenticator.ForProtectedResource(Constants.OauthConsumerKey,
                     Constants.OauthConsumerSecret, App.UserModel.AccessToken, App.UserModel.TokenSecret);
@@ -33,9 +41,12 @@ namespace KaPro
                 }
                 
             }
-            client.ExecuteAsync<T>(request,response=>
+
+         client.ExecuteAsync<T>(request,response=>
                 { 
+                    //dynamic temp = JsonConvert.DeserializeObject<dynamic>(response.Content);
                     callback(response.Data);
+                    
                 });
         }
     }

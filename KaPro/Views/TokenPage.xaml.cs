@@ -43,7 +43,7 @@ namespace KaPro.Views
             tokenProgress.Visibility = Visibility.Visible;
             KaApi apiCall = new KaApi();
             RestRequest request = new RestRequest(Constants.UserDetails);
-            apiCall.Execute<User>(request, parseUser,true);
+            apiCall.ExecuteAsync<User>(request, parseUser,true);
             }
 
         }
