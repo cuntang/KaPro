@@ -89,8 +89,8 @@ namespace KaPro.Views
             if (topic!=null&& topic.subItems.Count==0)
             {
                 progressPivot.Visibility = Visibility.Visible;
-                this.topics.isDataLoaded = false;
-                this.topics.LoadData(topic.Id);
+                //this.topics.isDataLoaded = false;
+                this.topics.loadSubItem(topic);
             }
         }
     }

@@ -105,6 +105,16 @@ namespace KaPro
                 apiCall.ExecuteAsync<List<EntryModel>>(request, parseTopicTree);
             }
         }
+        public void loadSubItem(EntryModel item)
+        {
+            if (item.subItems.Count == 0)
+            {
+                KaApi apiCall = new KaApi();
+                RestRequest request = new RestRequest(Constants.TopicUrl + item.Id + "/videos");
+                //request.RootElement = "children";
+                apiCall.ExecuteAsync<List<EntryModel>>(request, parseTopicTree);
+            }
+        }
 
         private void NotifyPropertyChanged(String propertyName)
         {
@@ -123,7 +133,7 @@ namespace KaPro
             }
             else { 
             rootTopic = data;
-            ((App)App.Current).RootFrame.Dispatcher.BeginInvoke(new Action<List<EntryModel>>(parseTopicView), data.Children);
+            ((App)App.Current).RootFrame.Dispatcher.BeginInvoke(new Action<List<EntryModel>,EntryModel>(parseTopicView), data.Children,null);
             }
         }
 
@@ -137,30 +147,51 @@ namespace KaPro
             }
             else
             {
-                ((App)App.Current).RootFrame.Dispatcher.BeginInvoke(new Action<List<EntryModel>>(parseTopicView), data);
+                ((App)App.Current).RootFrame.Dispatcher.BeginInvoke(new Action<List<EntryModel>,EntryModel>(parseTopicView), data,null);
             }
         }
-        private void parseTopicView(List<EntryModel> data)
+        private void parseTopicView(List<EntryModel> data,EntryModel item=null)
         {
             if (data != null)
             {
-                this.Items.Clear();
-                if (this.Topic!="Main")
-                    this.Items.Add(allTopics);
+                if (item == null)
+                {
+                    this.Items.Clear();
+                    if (this.Topic != "Main")
+                        this.Items.Add(allTopics);
+                }
                 foreach (EntryModel topic in data)
                 {
                     if (!topic.Hide)
                     {
-                        if (topic.Kind == "Topic") { this.Items.Add(topic); allTopics.subItems.Add(topic); }
+                        if (topic.Kind == "Topic") {
+                            if (item == null)
+                            {
+                                this.Items.Add(topic);
+                                allTopics.subItems.Add(topic);
+                            }
+                            else
+                            {
+                                item.subItems.Add(topic);
+                            }
+                        }
                         else if (topic.Kind == "Video")
                         {
-                            if (this.Items.Count == 1)
+                            if (item == null)
                             {
-                                EntryModel tmpTopic = new EntryModel();
-                                tmpTopic.Title = parentTopic.Replace('-', ' ');
-                                allTopics.subItems.Add(topic);
-                                //LoadVideoData(topic.Id);
+                                if (this.Items.Count == 1) // if no sub topics. ONLY "All"=> all vidoes
+                                {
+                                    EntryModel tmpTopic = new EntryModel();
+                                    tmpTopic.Title = parentTopic.Replace('-', ' ');
+                                    allTopics.subItems.Add(topic);
+                                    //LoadVideoData(topic.Id);
+                                }
                             }
+                            else
+                            {
+                                item.subItems.Add(topic);
+                            }
+
                         }
                     }
                 }
